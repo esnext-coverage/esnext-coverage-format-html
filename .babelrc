@@ -1,12 +1,3 @@
 {
-  "presets": [
-    "es2015"
-  ],
-  "env": {
-    "test": {
-      "plugins": [
-        ["transform-esnext-coverage", {"only": ["src/*.js","src/**/*.js"]}]
-      ]
-    }
-  }
+  "presets": ["es2015"]
 }

@@ -9,7 +9,7 @@
     "dist": "NODE_ENV=production GULP_ENV=dist gulp build",
     "dist-live": "npm test && NODE_ENV=production GULP_ENV=dist-live gulp serve",
     "lint": "eslint --ignore-path .gitignore .",
-    "test": "NODE_ENV=test mocha -r esnext-coverage --compilers js:babel-core/register test/*.spec.js",
+    "test": "mocha -r esnext-coverage test/*.spec.js",
     "prepublish": "npm run lint && npm run dist",
     "start": "npm run dev-live"
   },

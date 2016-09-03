@@ -1,0 +1,8 @@
+{
+  "only": ["src/*.js", "src/**/*.js"],
+  "reporters": [
+    {
+      "outFile": "coverage/coverage.json"
+    }
+  ]
+}
