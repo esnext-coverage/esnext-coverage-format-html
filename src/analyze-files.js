@@ -7,8 +7,7 @@ import {metrics, tags, lines} from 'esnext-coverage-analytics';
 const requiredTags = [
   'statement',
   'branch',
-  'function',
-  'line'
+  'function'
 ];
 
 const separator = /\\|\//;
@@ -24,6 +23,7 @@ function computeMetrics(coverageLocations) {
       result[tagName] = metrics(selectedTags[tagName]);
       return result;
     }, {});
+  selectedMetrics.line = metrics(lines(coverageLocations));
   return selectedMetrics;
 }
 
