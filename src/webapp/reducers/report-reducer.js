@@ -13,8 +13,18 @@ function locationReducer(state = {}, action) {
   }
 }
 
+function searchReducer(state = '', action) {
+  switch (action.type) {
+  case 'SEARCH':
+    return action.payload;
+  default:
+    return state;
+  }
+}
+
 export default combineReducers({
   location: locationReducer,
+  search: searchReducer,
   files: noopReducer,
   metrics: noopReducer,
   environment: noopReducer,

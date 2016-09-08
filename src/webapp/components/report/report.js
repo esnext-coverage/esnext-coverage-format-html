@@ -1,6 +1,7 @@
 import h from 'virtual-dom/h';
 import findSubtree from '../../services/find-subtree';
 import header from '../header/header';
+import search from '../search/search';
 import stats from '../stats/stats';
 import footer from '../footer/footer';
 import filebox from '../filebox/filebox';
@@ -12,6 +13,7 @@ export default function report(state) {
     className: 'report'
   }, [
     header(state),
+    search(state),
     stats(currentSubtree),
     filebox(currentSubtree),
     footer(state)

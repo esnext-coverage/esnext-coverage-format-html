@@ -8,4 +8,5 @@
   flex-direction: column;
   align-items: stretch;
   border: solid 1px #999;
+  box-sizing: border-box;
 }

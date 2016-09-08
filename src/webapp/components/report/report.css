@@ -1,4 +1,5 @@
 @import "../header/header";
+@import "../search/search";
 @import "../stats/stats";
 @import "../breadcrumbs/breadcrumbs";
 @import "../filebox/filebox";
