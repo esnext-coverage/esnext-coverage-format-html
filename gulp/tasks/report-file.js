@@ -36,8 +36,8 @@ function streamCriticalStyles() {
     .src(src.stylesMain)
     .pipe(gulpPlumber(notify.andEndStream))
     .pipe(gulpPostcss([
-      autoprefixer({browsers}),
       postcssImport(),
+      autoprefixer({browsers}),
       postcssCustomProperties(),
       postcssExtend()
     ]))
