@@ -1,3 +1,5 @@
+/* eslint complexity: 1, no-nested-ternary: 1 */
+
 import {combineReducers} from 'redux';
 
 function noopReducer(state = {}) {
@@ -13,10 +15,24 @@ function locationReducer(state = {}, action) {
   }
 }
 
-function searchReducer(state = '', action) {
-  switch (action.type) {
+function searchReducer(state = {}, {type, payload}) {
+  switch (type) {
   case 'SEARCH':
-    return action.payload;
+    return {query: payload, selected: null};
+  case 'SEARCH_SUGGESTIONS_CLEAR':
+    return {query: '', selected: null};
+  case 'SEARCH_SUGGESTIONS_NAVIGATE_TO':
+    return {
+      query: state.query,
+      selected: payload
+    };
+  case 'SEARCH_SUGGESTIONS_NAVIGATE':
+    return {
+      query: state.query,
+      selected: typeof state.selected === 'number' ?
+        state.selected + payload :
+        payload > 0 ? 0 : -1
+    };
   default:
     return state;
   }

@@ -50,6 +50,7 @@
 
 /* --- search suggestion --- */
 
+%search__suggestion,
 .search__suggestion {
   display: block;
   width: 100%;
@@ -61,10 +62,12 @@
   text-decoration: none;
 }
 
+%search__suggestion:last-child,
 .search__suggestion:last-child {
   border-bottom: none;
 }
 
-.search__suggestion:hover {
+.search__suggestion--selected {
+  @extend %search__suggestion;
   background-color: #bdc3c7;
 }
