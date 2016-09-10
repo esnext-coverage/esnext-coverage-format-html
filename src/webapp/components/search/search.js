@@ -1,13 +1,15 @@
 import h from 'virtual-dom/h';
 import store from '../../store';
+import search from '../../services/search';
 
 function suggestionsSelector(state) {
-  const current = state.location.path[0];
-  return Object
+  const query = state.search;
+  if (!query) { return []; }
+  const currentLocation = state.location.path[0];
+  const candidates = Object
     .keys(state.files.contents)
-    .filter(fileName => {
-      return state.search && current !== fileName && fileName.includes(state.search);
-    });
+    .filter(fileName => fileName !== currentLocation);
+  return search(candidates, query, {maxResults: 7});
 }
 
 function clearSearch() {
@@ -50,7 +52,7 @@ function searchSuggestionList(suggestions) {
   }, suggestions.map(searchSuggestion));
 }
 
-export default function search(state) {
+export default function searchComponent(state) {
   return h('div', {
     className: 'search'
   }, [
