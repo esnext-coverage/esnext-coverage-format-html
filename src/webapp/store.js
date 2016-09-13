@@ -10,6 +10,7 @@ const {files, timestamp, thresholds, environment} = '%REPORT%';
 const store = createStore(reportReducer, {
   location: parseUrl(window.location.href),
   files: buildTree(files),
+  filepaths: files.map(f => f.path),
   environment,
   thresholds,
   timestamp

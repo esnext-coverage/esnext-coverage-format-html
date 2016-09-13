@@ -42,6 +42,7 @@ export default combineReducers({
   location: locationReducer,
   search: searchReducer,
   files: noopReducer,
+  filepaths: noopReducer,
   metrics: noopReducer,
   environment: noopReducer,
   thresholds: noopReducer,

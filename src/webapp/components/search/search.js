@@ -6,8 +6,7 @@ function suggestionsSelector(state) {
   const {query, selected} = state.search;
   if (!query) { return []; }
   const currentLocation = state.location.path[0];
-  const candidates = Object
-    .keys(state.files.contents)
+  const candidates = state.filepaths
     .filter(fileName => fileName !== currentLocation);
   const results = search(candidates, query, {maxResults: 7});
   const selectedSuggestionIndex = typeof selected === 'number' ?
