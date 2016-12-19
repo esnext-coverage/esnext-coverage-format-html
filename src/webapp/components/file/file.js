@@ -41,9 +41,8 @@ function codeGutter(lines) {
 }
 
 export default function file(node) {
-  const lines = node.contents.split('\n').map(text => {
-    return {count: 0, covered: false, text};
-  });
+  const lines = node.contents.split('\n')
+    .map(text => ({count: 0, covered: false, text}));
   node.lines.forEach(line => {
     const lineNumber = line.line - 1;
     lines[lineNumber].covered = true;
