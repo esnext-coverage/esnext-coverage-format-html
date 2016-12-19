@@ -2,11 +2,11 @@ import h from 'virtual-dom/h';
 import getMetricTagTitle from '../../services/get-metric-tag-title';
 
 function generateMetricsNameCells(metrics) {
-  return Object.keys(metrics).map(tagName => {
-    return h('div', {
+  return Object.keys(metrics).map(tagName =>
+    h('div', {
       className: 'filelist-header__metric'
-    }, [getMetricTagTitle(tagName)]);
-  });
+    }, [getMetricTagTitle(tagName)])
+  );
 }
 
 export default function filelistHeader({metrics}) {

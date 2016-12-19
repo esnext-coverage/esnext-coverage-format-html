@@ -27,13 +27,13 @@ function computeMetrics(coverageLocations) {
   return selectedMetrics;
 }
 
-function analyzeFile(fileCoverage) {
+function analyzeFile(filePath, fileCoverageLocations) {
   return {
-    name: path.basename(fileCoverage.path),
-    path: normalizePath(fileCoverage.path),
-    contents: fs.readFileSync(fileCoverage.path, 'utf8'),
-    lines: lines(fileCoverage.locations),
-    metrics: computeMetrics(fileCoverage.locations)
+    name: path.basename(filePath),
+    path: normalizePath(filePath),
+    contents: fs.readFileSync(filePath, 'utf8'),
+    lines: lines(fileCoverageLocations),
+    metrics: computeMetrics(fileCoverageLocations)
   };
 }
 
@@ -54,9 +54,8 @@ function findCommonPath(splitFilePaths = []) {
 }
 
 export default function analyzeFiles(filesCoverage) {
-  const files = Object.keys(filesCoverage).map(filePath => {
-    return analyzeFile(filesCoverage[filePath]);
-  });
+  const files = Object.keys(filesCoverage)
+    .map(filePath => analyzeFile(filePath, filesCoverage[filePath]));
   const splitFullFilePaths = files.map(file => file.path.split('/'));
   const commonPath = findCommonPath(splitFullFilePaths).join('/');
   return files.map(file => {
