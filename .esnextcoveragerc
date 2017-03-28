@@ -4,5 +4,13 @@
     {
       "outFile": "coverage/coverage.json"
     }
-  ]
+  ],
+  "thresholds": {
+    "global": {
+      "statement": 30,
+      "branch": 30,
+      "function": 30,
+      "line": 30
+    }
+  }
 }

@@ -34,8 +34,8 @@ export default function createMiddleware() {
         res.end(`Failed to read the requested fixture.\n${fixtureError}`);
       } else {
         try {
-          const coverage = JSON.parse(fixtureContents);
-          const html = esnextCoverageFormatHtml(coverage);
+          const {coverage, options} = JSON.parse(fixtureContents);
+          const html = esnextCoverageFormatHtml(coverage, options);
           res.writeHead(200, {
             'Content-Type': 'text/html',
             ETag: etag(html)

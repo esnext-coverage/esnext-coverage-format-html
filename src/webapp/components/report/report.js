@@ -15,7 +15,7 @@ export default function report(state) {
     header(state),
     search(state),
     stats(currentSubtree),
-    filebox(currentSubtree),
+    filebox(currentSubtree, state.thresholds),
     footer(state)
   ]);
 }

@@ -9,7 +9,7 @@
     "dist": "NODE_ENV=production GULP_ENV=dist gulp build",
     "dist-live": "npm test && NODE_ENV=production GULP_ENV=dist-live gulp serve",
     "lint": "eslint --ignore-path .gitignore .",
-    "test": "mocha -r esnext-coverage test/*.spec.js",
+    "test": "mocha -r esnext-coverage -r jsdom-global/register test/*.spec.js",
     "prepublish": "npm run lint && npm run dist",
     "start": "npm run dev-live"
   },
@@ -51,6 +51,8 @@
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.9",
+    "jsdom": "^9.12.0",
+    "jsdom-global": "^2.1.1",
     "merge-stream": "^1.0.0",
     "mocha": "^3.0.2",
     "postcss-custom-properties": "^5.0.1",
