@@ -35,6 +35,16 @@
   border-left: solid 1px var(--textSubColor);
 }
 
+.filelist-item__metric--passed {
+  @extend .filelist-item__metric;
+  background-color: rgba(39, 174, 96, 0.3);
+}
+
+.filelist-item__metric--failed {
+  @extend .filelist-item__metric;
+  background-color: rgba(231, 76, 60, 0.3);
+}
+
 .filelist-item__metric__percentage {
   flex: 1;
 }

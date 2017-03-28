@@ -6,7 +6,7 @@ import buildTree from './services/build-tree';
 import {locationAction} from './actions/location-action';
 import reportReducer from './reducers/report-reducer';
 
-const {files, timestamp, thresholds, environment} = '%REPORT%';
+const {files = [], timestamp, thresholds, environment} = '%REPORT%';
 const store = createStore(reportReducer, {
   location: parseUrl(window.location.href),
   files: buildTree(files),
