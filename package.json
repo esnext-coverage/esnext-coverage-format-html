@@ -16,7 +16,7 @@
   "author": "Oleg Sklyanchuk <sklyanchuk@gmail.com> (http://olegskl.com)",
   "license": "MIT",
   "dependencies": {
-    "esnext-coverage": "^0.0.5",
+    "esnext-coverage": "^0.0.7",
     "esnext-coverage-analytics": "^0.0.5",
     "fuzzaldrin": "^2.1.0",
     "redux": "^3.6.0",
