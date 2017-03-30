@@ -6,14 +6,16 @@ import buildTree from './services/build-tree';
 import {locationAction} from './actions/location-action';
 import reportReducer from './reducers/report-reducer';
 
-const {files = [], timestamp, thresholds, environment} = '%REPORT%';
+let report = '%REPORT%';
+report = typeof report === 'string' ? {files: []} : report;
+
 const store = createStore(reportReducer, {
   location: parseUrl(window.location.href),
-  files: buildTree(files),
-  filepaths: files.map(f => f.path),
-  environment,
-  thresholds,
-  timestamp
+  files: buildTree(report.files),
+  filepaths: report.files.map(f => f.path),
+  environment: report.environment,
+  thresholds: report.thresholds,
+  timestamp: report.timestamp
 });
 
 window.addEventListener('hashchange', ({newURL}) => {

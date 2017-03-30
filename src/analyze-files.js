@@ -54,8 +54,9 @@ function findCommonPath(splitFilePaths = []) {
 }
 
 export default function analyzeFiles(filesCoverage) {
-  const files = Object.keys(filesCoverage)
-    .map(filePath => analyzeFile(filePath, filesCoverage[filePath]));
+  const filePaths = Object.keys(filesCoverage);
+  if (!filePaths.length) { return []; }
+  const files = filePaths.map(filePath => analyzeFile(filePath, filesCoverage[filePath]));
   const splitFullFilePaths = files.map(file => file.path.split('/'));
   const commonPath = findCommonPath(splitFullFilePaths).join('/');
   return files.map(file => {
