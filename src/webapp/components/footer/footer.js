@@ -2,7 +2,8 @@ import h from 'virtual-dom/h';
 
 function projectLink() {
   return h('a', {
-    href: 'https://github.com/esnext-coverage'
+    href: 'https://github.com/esnext-coverage',
+    className: 'footer-project-link'
   }, ['esnext-coverage']);
 }
 

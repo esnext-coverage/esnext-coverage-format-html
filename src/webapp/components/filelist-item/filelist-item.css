@@ -1,22 +1,29 @@
 .filelist-item {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: center;
   align-content: center;
-  flex: 0 1 2rem;
-  line-height: 1rem;
-  border-top: solid 1px var(--textSubColor);
+  flex: 0 1 2.4rem;
+  border-top: solid 1px var(--separatorColor);
   color: var(--textColor);
   text-decoration: none;
+  background: #fafafa;
+}
+
+.filelist-item:first-child {
+  border-top: none;
 }
 
 .filelist-item:hover {
-  background-color: #bdc3c7;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 %filelist-item__cell {
   font-size: 0.9rem;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
 }
 
 .filelist-item__name {
@@ -27,22 +34,50 @@
 .filelist-item__metric {
   @extend %filelist-item__cell;
   display: flex;
-  flex: 0 0 9rem;
+  flex: 0 0 5.5rem;
   overflow: hidden;
   white-space: nowrap;
   font-size: 0.8rem;
-  text-align: right;
-  border-left: solid 1px var(--textSubColor);
+  text-align: left;
+  border-left: solid 1px var(--separatorColor);
+}
+
+@media (min-width: 1024px) {
+  .filelist-item__metric {
+    flex: 0 0 10rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .filelist-item__metric {
+    flex: 0 0 11rem;
+  }
 }
 
 .filelist-item__metric--passed {
   @extend .filelist-item__metric;
-  background-color: rgba(39, 174, 96, 0.3);
+}
+
+.filelist-item__metric--passed::before {
+  content: '';
+  margin-right: 0.3rem;
+  flex: 0 0 1rem;
+  height: 1rem;
+  background-color: rgba(39, 174, 96, 0.5);
+  border-radius: 50%;
 }
 
 .filelist-item__metric--failed {
   @extend .filelist-item__metric;
-  background-color: rgba(231, 76, 60, 0.3);
+}
+
+.filelist-item__metric--failed::before {
+  content: '';
+  margin-right: 0.3rem;
+  flex: 0 0 1rem;
+  height: 1rem;
+  background-color: rgba(231, 76, 60, 0.5);
+  border-radius: 50%;
 }
 
 .filelist-item__metric__percentage {
@@ -50,6 +85,13 @@
 }
 
 .filelist-item__metric__counts {
+  display: none;
   flex: 1;
   color: var(--textSubColor);
+}
+
+@media (min-width: 1024px) {
+  .filelist-item__metric__counts {
+    display: flex;
+  }
 }

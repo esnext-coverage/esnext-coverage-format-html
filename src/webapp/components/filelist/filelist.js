@@ -11,9 +11,9 @@ function generateFilelist(tree, thresholds) {
 
 export default function filelist(subtree, thresholds) {
   return h('div', {
-    className: 'filelist'
+    className: 'filelist-container'
   }, [
     filelistHeader(subtree),
-    ...generateFilelist(subtree, thresholds)
+    h('div', {className: 'filelist'}, generateFilelist(subtree, thresholds))
   ]);
 }

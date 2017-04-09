@@ -1,15 +1,16 @@
 .file {
-  margin: 0.5rem;
-  width: 55rem;
+  margin-top: 0.7rem;
+  width: var(--width);
   display: flex;
-  font-size: 0.8rem;
+  font-size: 1rem;
   align-items: stretch;
-  border: solid 1px var(--textSubColor);
+  border: solid 1px var(--separatorColor);
+  background: #fafafa;
 }
 
 .line {
-  height: 1rem;
-  line-height: 1rem;
+  height: 1.2rem;
+  line-height: 1.2;
   overflow: visible;
 }
 
@@ -30,14 +31,14 @@
   @extend .line;
   text-align: right;
   padding-right: 0.5rem;
-  border-right: solid 1px var(--textSubColor);
+  border-right: solid 1px var(--separatorColor);
   margin: 0;
 }
 
 .line-count {
   @extend .line;
   padding: 0 0.5rem;
-  border-right: solid 1px var(--textSubColor);
+  border-right: solid 1px var(--separatorColor);
   margin: 0;
   text-align: right;
   background-color: rgba(189, 195, 199, 0.3);

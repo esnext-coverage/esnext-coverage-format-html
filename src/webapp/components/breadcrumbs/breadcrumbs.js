@@ -7,11 +7,19 @@ function generateBreadcrumb(name, path) {
   }, [name]);
 }
 
+function generateBreadcrumbSeparator() {
+  return h('span', {className: 'breadcrumb-separator'}, ['...']);
+}
+
 function generateBreadcrumbList(path) {
-  return path.map((dir, index) => {
+  const breadcrumbElements = path.map((dir, index) => {
     const href = path.slice(0, index + 1).join('/');
     return generateBreadcrumb(dir, href);
   });
+  return breadcrumbElements.length > 3 ? [
+    generateBreadcrumbSeparator(),
+    ...breadcrumbElements.slice(-3)
+  ] : breadcrumbElements;
 }
 
 export default function breadcrumbs({location}) {

@@ -1,7 +1,15 @@
 .footer {
   margin: 0.5rem;
+  width: var(--width);
   white-space: pre-wrap;
   display: flex;
-  align-items: center;
+  justify-content: center;
   font-size: 0.8rem;
+  color: var(--textSubColor);
+}
+
+.footer-project-link,
+.footer-project-link:hover,
+.footer-project-link:active {
+  color: var(--textSubColor);
 }

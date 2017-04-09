@@ -1,4 +1,8 @@
 :root {
   --textColor: #333;
   --textSubColor: #999;
+
+  --separatorColor: rgba(153, 153, 153, 0.5);
+
+  --width: calc(100% - 4rem);
 }

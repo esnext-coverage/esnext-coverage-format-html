@@ -6,7 +6,7 @@
 @import "../footer/footer";
 
 .report {
-  padding: 0.5rem;
+  padding-top: 5.375rem;
   display: flex;
   flex: 1;
   flex-direction: column;

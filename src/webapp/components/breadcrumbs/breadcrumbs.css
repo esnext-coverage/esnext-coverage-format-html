@@ -3,7 +3,8 @@
   justify-content: flex-start;
 }
 
-.breadcrumb {
+.breadcrumb,
+.breadcrumb-separator {
   position: relative;
   color: var(--textColor);
   margin: 0 0.2rem 0 0.5rem;
@@ -16,7 +17,8 @@
   text-decoration: underline;
 }
 
-.breadcrumb::before {
+.breadcrumb::before,
+.breadcrumb-separator::before {
   position: absolute;
   left: -0.6rem;
   color: var(--textSubColor);

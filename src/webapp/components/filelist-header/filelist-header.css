@@ -1,13 +1,11 @@
 .filelist-header {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: flex-end;
   align-content: center;
-  flex: 0 0 1.4rem;
-  line-height: 1rem;
+  flex: 0 0 2rem;
   color: var(--textSubColor);
   text-decoration: none;
-  background-color: rgba(189, 195, 199, 0.3);
 }
 
 .filelist-header__name {
@@ -18,9 +16,20 @@
 }
 
 .filelist-header__metric {
-  flex: 0 0 9rem;
+  flex: 0 0 5.5rem;
   padding: 0 0.5rem;
   font-size: 0.8rem;
   line-height: 1.4rem;
-  border-left: solid 1px var(--textSubColor);
+}
+
+@media (min-width: 1024px) {
+  .filelist-header__metric {
+    flex: 0 0 10rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .filelist-header__metric {
+    flex: 0 0 11rem;
+  }
 }

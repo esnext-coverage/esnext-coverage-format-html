@@ -1,12 +1,16 @@
 @import "../filelist-header/filelist-header";
 @import "../filelist-item/filelist-item";
 
+.filelist-container {
+  display: flex;
+  flex-direction: column;
+  width: var(--width);
+  align-items: stretch;
+}
+
 .filelist {
-  margin: 0.5rem;
-  width: 55rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  border: solid 1px #999;
-  box-sizing: border-box;
+  border: solid 1px var(--separatorColor);
 }
