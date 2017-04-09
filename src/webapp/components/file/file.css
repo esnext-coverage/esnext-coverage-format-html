@@ -45,12 +45,12 @@
 
 .line-count--covered {
   @extend .line-count;
-  background-color: rgba(39, 174, 96, 0.3);
+  background-color: #bbe4cc;
 }
 
 .line-count--not-covered {
   @extend .line-count;
-  background-color: rgba(231, 76, 60, 0.3);
+  background-color: #f5c6c1;
 }
 
 .line-text {
@@ -59,13 +59,24 @@
   margin: 0;
 }
 
-.line-text--not-passed {
-  @extend .line-text;
-  background-color: rgba(231, 76, 60, 0.05);
-  color: rgba(231, 76, 60, 1);
+/* ----- Tokens ----- */
+
+.token--comment {
+  color: var(--textSubColor);
 }
 
-.line-text--not-covered {
-  @extend .line-text;
-  color: var(--textSubColor);
+.token--keyword {
+  color: #a5185a;
+}
+
+.token--string {
+  color: #153591;
+}
+
+.token--name {
+  color: #785ba1;
+}
+
+.location--not-covered {
+  background-color: #f5c6c1;
 }

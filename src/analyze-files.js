@@ -32,6 +32,7 @@ function analyzeFile(filePath, fileCoverageLocations) {
     name: path.basename(filePath),
     path: normalizePath(filePath),
     contents: fs.readFileSync(filePath, 'utf8'),
+    locations: fileCoverageLocations,
     lines: lines(fileCoverageLocations),
     metrics: computeMetrics(fileCoverageLocations)
   };

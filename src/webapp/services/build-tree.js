@@ -10,7 +10,8 @@ function treeReducer(result, file) {
         name: dir,
         path: dirs.slice(0, i + 1).join('/'),
         metrics: {},
-        contents: {}
+        contents: {},
+        locations: []
       };
     }
     return x[dir].contents;
