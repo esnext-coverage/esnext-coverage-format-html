@@ -13,7 +13,7 @@ function filelistItemMetricClassName(ratio, threshold) {
 function generateMetricsCells(metrics, thresholds = {}) {
   return Object.keys(metrics).map(tagName => {
     const {covered, total} = metrics[tagName];
-    const ratio = total ? covered / total : 0;
+    const ratio = total ? covered / total : 1;
     const threshold = thresholds.global ? thresholds.global[tagName] : null;
     return h('div', {
       className: filelistItemMetricClassName(ratio, threshold)
