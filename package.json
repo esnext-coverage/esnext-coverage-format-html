@@ -1,6 +1,6 @@
 {
   "name": "esnext-coverage-format-html",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "esnext-coverage output formatter to HTML",
   "main": "dist/index.js",
   "scripts": {
