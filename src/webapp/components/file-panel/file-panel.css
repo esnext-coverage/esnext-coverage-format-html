@@ -1,0 +1,71 @@
+/* ----- Stack ----- */
+
+.file-panel-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: -2rem;
+  bottom: 0;
+  right: 0;
+  width: 40vw;
+}
+
+.file-panel-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  align-content: center;
+  flex: 0 0 2rem;
+  color: var(--textSubColor);
+  text-decoration: none;
+  padding: 0 0.5rem;
+  line-height: 1.4rem;
+  font-size: 0.8rem;
+}
+
+.file-panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 0.5rem;
+  overflow-y: auto;
+  border-left: solid 1px var(--separatorColor);
+  background: #fff;
+}
+
+.stack-annotation {
+  color: var(--textSubColor);
+}
+
+.stack-item {
+  display: flex;
+  flex: 0 0 1.2rem;
+  height: 1.2rem;
+  line-height: 1.2;
+  cursor: default;
+}
+
+.stack-item--inspected {
+  @extend .stack-item;
+  background-color: #bbe4cc;
+}
+
+.stack-item__tags {
+  flex: 0 0 11rem;
+  overflow: hidden;
+}
+
+.stack-item__name {
+  flex: 1;
+  overflow: hidden;
+  height: 1.2rem;
+  line-height: 1.2;
+  padding: 0;
+  margin: 0;
+}
+
+.stack-item__source-line {
+  flex: 0 0 6rem;
+  overflow: hidden;
+  text-align: right;
+}

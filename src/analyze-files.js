@@ -2,39 +2,18 @@
 
 import fs from 'fs';
 import path from 'path';
-import {metrics, tags, lines} from 'esnext-coverage-analytics';
-
-const requiredTags = [
-  'statement',
-  'branch',
-  'function'
-];
 
 const separator = /\\|\//;
 function normalizePath(pathString) {
   return pathString.replace(separator, '/');
 }
 
-function computeMetrics(coverageLocations) {
-  const selectedTags = tags(coverageLocations, requiredTags);
-  const selectedMetrics = Object
-    .keys(selectedTags)
-    .reduce((result, tagName) => {
-      result[tagName] = metrics(selectedTags[tagName]);
-      return result;
-    }, {});
-  selectedMetrics.line = metrics(lines(coverageLocations));
-  return selectedMetrics;
-}
-
-function analyzeFile(filePath, fileCoverageLocations) {
+function analyzeFile(filePath, coverage) {
   return {
     name: path.basename(filePath),
     path: normalizePath(filePath),
     contents: fs.readFileSync(filePath, 'utf8'),
-    locations: fileCoverageLocations,
-    lines: lines(fileCoverageLocations),
-    metrics: computeMetrics(fileCoverageLocations)
+    coverage
   };
 }
 

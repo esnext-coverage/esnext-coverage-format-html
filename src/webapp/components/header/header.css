@@ -11,6 +11,7 @@
   margin-bottom: 0.5rem;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   transform: translateZ(0);
+  z-index: 100;
 }
 
 .header-logo {

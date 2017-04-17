@@ -13,7 +13,7 @@ export default function report(state) {
   }, [
     header(state),
     stats(currentSubtree),
-    filebox(currentSubtree, state.thresholds),
+    filebox(currentSubtree, state),
     footer(state)
   ]);
 }

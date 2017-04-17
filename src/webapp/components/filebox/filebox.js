@@ -1,8 +1,8 @@
 import filelist from '../filelist/filelist';
 import file from '../file/file';
 
-export default function filebox(subtree, thresholds) {
+export default function filebox(subtree, state) {
   return subtree.type === 'file' ?
-    file(subtree) :
-    filelist(subtree, thresholds);
+    file(subtree, state) :
+    filelist(subtree, state.thresholds);
 }

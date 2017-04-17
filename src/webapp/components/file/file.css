@@ -1,11 +1,20 @@
-.file {
-  margin-top: 0.7rem;
+@import "../file-header/file-header";
+@import "../file-panel/file-panel";
+
+.file-container {
+  display: flex;
+  flex-direction: column;
   width: var(--width);
+  align-items: stretch;
+}
+
+.file {
+  position: relative;
   display: flex;
   font-size: 1rem;
   align-items: stretch;
   border: solid 1px var(--separatorColor);
-  background: #fafafa;
+  background: #fff;
 }
 
 .line {
@@ -15,7 +24,7 @@
 }
 
 .gutter-line-number {
-  flex: 0 0 2.5rem;
+  flex: 0 0 3rem;
 }
 
 .gutter-pass-count {
@@ -76,6 +85,10 @@
 
 .token--name {
   color: #785ba1;
+}
+
+.location--inspected {
+  background-color: #bbe4cc;
 }
 
 .location--not-covered {

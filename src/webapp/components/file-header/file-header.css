@@ -1,0 +1,24 @@
+.file-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  align-content: center;
+  flex: 0 0 2rem;
+  color: var(--textSubColor);
+  text-decoration: none;
+  padding: 0 0.5rem;
+  line-height: 1.4rem;
+  font-size: 0.8rem;
+}
+
+.file-header__line {
+  flex: 0 0 3rem;
+}
+
+.file-header__count {
+  flex: 0 0 3.5rem;
+}
+
+.file-header__source-code {
+  flex: 1;
+}

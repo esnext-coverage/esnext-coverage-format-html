@@ -1,5 +1,14 @@
 import h from 'virtual-dom/h';
-import {parse} from 'babylon';
+import store from '../../store';
+import fileHeader from '../file-header/file-header';
+import filePanel from '../file-panel/file-panel';
+
+function inspectLocation(path, id) {
+  store.dispatch({
+    type: 'INSPECTION_LOCATION',
+    payload: {path, id}
+  });
+}
 
 function generateLineCountClassName(line) {
   if (!line.covered) { return 'line-count'; }
@@ -27,30 +36,22 @@ function passCountGutter(lines) {
 }
 
 function codeGutter(lines) {
-  return h('div', {className: 'gutter-code'}, [
+  return h('div', {
+    className: 'gutter-code',
+    onmouseleave() { inspectLocation(null, null); }
+  }, [
     lines.map(line => h('pre', {className: 'line-text'}, line.elements))
   ]);
 }
 
 function locationSorter(a, b) {
-  const yd = a[2] - b[2];
+  const yd = a.loc.start.line - b.loc.start.line;
   if (yd !== 0) { return yd; }
-  return a[1] - b[1];
+  return a.loc.start.column - b.loc.start.column;
 }
 
-function tokensOnLine(lineNum) {
-  return token => token.loc.start.line <= lineNum && token.loc.end.line >= lineNum;
-}
-
-function locationsOnLine(lineNum) {
-  return token => token[2] <= lineNum && token[4] >= lineNum;
-}
-
-function normalizeTokenType(tokenType) {
-  if (tokenType === 'CommentBlock' || tokenType === 'CommentLine') { return 'comment'; }
-  if (tokenType.keyword) { return 'keyword'; }
-  if (tokenType.label) { return tokenType.label; }
-  return 'unknown';
+function locatablesOnLine(locatable, lineNum) {
+  return locatable.loc.start.line <= lineNum && locatable.loc.end.line >= lineNum;
 }
 
 function generateTokens(lineNum, text, tokens) {
@@ -69,7 +70,7 @@ function generateTokens(lineNum, text, tokens) {
     const end = token.loc.end.line > lineNum ? text.length : token.loc.end.column;
     result.push({
       loc: token.loc,
-      type: normalizeTokenType(token.type),
+      type: token.type,
       contents: text.slice(start, end)
     });
     tracker = token.loc.end.column;
@@ -77,13 +78,13 @@ function generateTokens(lineNum, text, tokens) {
   return result;
 }
 
-function isTokenInsideLocation(token, location) {
+function isTokenInsideLocation(token, {loc}) {
   return (
-    location[2] < token.loc.start.line ||
-      location[2] === token.loc.start.line && location[1] <= token.loc.start.column
+    loc.start.line < token.loc.start.line ||
+      loc.start.line === token.loc.start.line && loc.start.column <= token.loc.start.column
   ) && (
-    location[4] > token.loc.end.line ||
-      location[4] === token.loc.end.line && location[3] >= token.loc.end.column
+    loc.end.line > token.loc.end.line ||
+      loc.end.line === token.loc.end.line && loc.end.column >= token.loc.end.column
   );
 }
 
@@ -104,7 +105,9 @@ function generateLocations(tokens, locations) {
         location,
         children: generateLocations(tokenGroup, locations.slice(j + 1))
       });
-      j = locations.findIndex(l => l[2] === location[4] && l[1] > location[3]);
+      j = locations.findIndex(
+        ({loc}) => loc.start.line === location.loc.end.line && loc.start.column > location.loc.end.column
+      );
     } else {
       result.push(token);
     }
@@ -116,49 +119,75 @@ function tokenize(lineNum, text, tokens, lineLocations) {
   return generateLocations(generateTokens(lineNum, text, tokens), lineLocations);
 }
 
-function tokenTreeAsElements(tokenTree) {
-  return tokenTree.children.map(node => {
-    if (node.children) {
+function tokenTreeAsElements(tokenTree, node, state) {
+  const locationId = state.inspection.path === node.path ? state.inspection.id : null;
+  return tokenTree.children.map(tokenSubtree => {
+    if (tokenSubtree.children) {
       const attrs = {};
-      if (node.location[0] === 0) {
+      if (tokenSubtree.location.count === 0) {
         attrs.className = 'location--not-covered';
+      } else if (locationId === tokenSubtree.location.id) {
+        attrs.className = 'location--inspected';
       }
-      return h('span', attrs, tokenTreeAsElements(node));
+      attrs.onmouseover = event => {
+        event.stopPropagation();
+        inspectLocation(node.path, tokenSubtree.location.id);
+      };
+      return h('span', attrs, tokenTreeAsElements(tokenSubtree, node, state));
     }
-    return node.type === 'whitespace' ?
-      node.contents :
-      h('span', {className: `token--${node.type}`}, node.contents);
+    if (tokenSubtree.type === 'whitespace') {
+      return tokenSubtree.contents;
+    }
+    return h('span', {className: `token--${tokenSubtree.type}`}, tokenSubtree.contents);
   });
 }
 
-export default function file(node) {
-  const locations = node.locations;
-  const {tokens} = parse(node.contents, {sourceType: 'module'});
+export default function file(node, state) {
+  const locations = node.coverage.locations;
+  const tokens = node.coverage.tokens;
   const lines = node.contents.split('\n')
-    .map((text, i) => {
-      const lineNum = i + 1;
-      const lineTokens = tokens.filter(tokensOnLine(lineNum));
-      const lineLocations = locations
-        .filter(locationsOnLine(lineNum))
-        .sort(locationSorter);
+    .map((text, lineNumOffset) => {
+      const lineNum = lineNumOffset + 1;
+
+      // Avoiding filter here for performance reasons:
+      const lineTokens = [];
+      for (let i = 0; i < tokens.length; i += 1) {
+        if (locatablesOnLine(tokens[i], lineNum)) {
+          lineTokens.push(tokens[i]);
+        }
+      }
+
+      // Avoiding filter here for performance reasons:
+      let lineLocations = [];
+      for (let i = 0; i < locations.length; i += 1) {
+        if (locatablesOnLine(locations[i], lineNum)) {
+          lineLocations.push(locations[i]);
+        }
+      }
+      lineLocations = lineLocations.sort(locationSorter);
+
       return {
         count: 0,
         covered: false,
         elements: tokenTreeAsElements({
           children: tokenize(lineNum, text, lineTokens, lineLocations)
-        })
+        }, node, state)
       };
     });
+
   node.lines.forEach(line => {
     const lineNumber = line.line - 1;
     lines[lineNumber].covered = true;
     lines[lineNumber].count = line.count;
   });
-  return h('div', {
-    className: 'file'
-  }, [
-    lineNumberGutter(lines),
-    passCountGutter(lines),
-    codeGutter(lines)
+
+  return h('div', {className: 'file-container'}, [
+    fileHeader(),
+    h('div', {className: 'file'}, [
+      lineNumberGutter(lines),
+      passCountGutter(lines),
+      codeGutter(lines),
+      filePanel(node, state)
+    ])
   ]);
 }
