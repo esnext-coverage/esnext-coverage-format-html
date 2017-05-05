@@ -16,9 +16,9 @@ function generateBreadcrumbList(path) {
     const href = path.slice(0, index + 1).join('/');
     return generateBreadcrumb(dir, href);
   });
-  return breadcrumbElements.length > 3 ? [
+  return breadcrumbElements.length > 5 ? [
     generateBreadcrumbSeparator(),
-    ...breadcrumbElements.slice(-3)
+    ...breadcrumbElements.slice(-5)
   ] : breadcrumbElements;
 }
 

@@ -1,2 +1,9 @@
 @import "../filelist/filelist";
 @import "../file/file";
+
+.filebox {
+  display: flex;
+  flex-direction: column;
+  width: var(--width);
+  align-items: stretch;
+}

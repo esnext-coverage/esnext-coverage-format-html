@@ -1,7 +1,7 @@
 .filelist-header {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
   align-content: center;
   flex: 0 0 2rem;
   color: var(--textSubColor);
@@ -10,16 +10,21 @@
 
 .filelist-header__name {
   font-size: 0.8rem;
-  line-height: 1.4rem;
-  padding: 0 0.5rem;
+  padding: 0 0.5rem 0 1rem;
   flex: 1;
 }
 
 .filelist-header__metric {
-  flex: 0 0 5.5rem;
+  flex: 0 0 6rem;
   padding: 0 0.5rem;
   font-size: 0.8rem;
   line-height: 1.4rem;
+}
+
+@media (min-width: 926px) {
+  .filelist-header__metric {
+    flex: 0 0 8rem;
+  }
 }
 
 @media (min-width: 1024px) {

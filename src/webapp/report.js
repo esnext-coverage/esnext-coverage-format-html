@@ -7,7 +7,7 @@ import report from './components/report/report';
 import store from './store';
 
 let tree = report(store.getState());
-let rootNode = createElement(tree, {document});
+let rootNode = createElement(tree);
 
 store.subscribe(function storeRootListener() {
   const newTree = report(store.getState());

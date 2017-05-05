@@ -1,8 +1,24 @@
 :root {
+
+  /* Colors */
+  --white: rgba(255, 255, 255, 1);
+  --whiteTransparent: rgba(255, 255, 255, 0.5);
   --textColor: #333;
   --textSubColor: #999;
+  --separatorColor: #e8edf0;
+  --successColor: rgb(81, 203, 118);
+  --successSubColor: rgb(202, 239, 214);
+  --failureColor: rgb(251, 118, 121);
+  --failureSubColor: rgb(254, 214, 215);
 
-  --separatorColor: rgba(153, 153, 153, 0.5);
-
+  /* Sizes */
   --width: calc(100% - 4rem);
+
+  /* Transitions */
+  --transitionDuration: 0.1s;
+
+  /* Layers */
+  --headerLayer: 10;
+  --searchSuggestionsLayer: 9;
+  --filePanelLayer: 8;
 }

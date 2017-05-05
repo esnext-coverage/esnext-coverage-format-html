@@ -1,12 +1,11 @@
 @import "../header/header";
-@import "../search/search";
 @import "../stats/stats";
-@import "../breadcrumbs/breadcrumbs";
+@import "../command-palette/command-palette";
 @import "../filebox/filebox";
 @import "../footer/footer";
 
 .report {
-  padding-top: 5.375rem;
+  padding-top: 7rem;
   display: flex;
   flex: 1;
   flex-direction: column;

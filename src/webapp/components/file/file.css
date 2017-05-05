@@ -4,8 +4,8 @@
 .file-container {
   display: flex;
   flex-direction: column;
-  width: var(--width);
   align-items: stretch;
+  margin-top: 1rem;
 }
 
 .file {
@@ -13,8 +13,11 @@
   display: flex;
   font-size: 1rem;
   align-items: stretch;
+  border-radius: 0.4rem;
   border: solid 1px var(--separatorColor);
-  background: #fff;
+  box-shadow: 0 0 20px #e8edf0;
+  background-color: var(--white);
+  padding: 0.5rem 0;
 }
 
 .line {
@@ -24,7 +27,7 @@
 }
 
 .gutter-line-number {
-  flex: 0 0 3rem;
+  flex: 0 0 3.5rem;
 }
 
 .gutter-pass-count {
@@ -40,27 +43,25 @@
   @extend .line;
   text-align: right;
   padding-right: 0.5rem;
-  border-right: solid 1px var(--separatorColor);
   margin: 0;
 }
 
 .line-count {
   @extend .line;
   padding: 0 0.5rem;
-  border-right: solid 1px var(--separatorColor);
   margin: 0;
   text-align: right;
-  background-color: rgba(189, 195, 199, 0.3);
+  background-color: #f3f5f9;
 }
 
 .line-count--covered {
   @extend .line-count;
-  background-color: #bbe4cc;
+  border-right: solid 5px var(--successColor);
 }
 
 .line-count--not-covered {
   @extend .line-count;
-  background-color: #f5c6c1;
+  border-right: solid 5px var(--failureColor);
 }
 
 .line-text {
@@ -88,9 +89,9 @@
 }
 
 .location--inspected {
-  background-color: #bbe4cc;
+  background-color: var(--successSubColor);
 }
 
 .location--not-covered {
-  background-color: #f5c6c1;
+  background-color: var(--failureSubColor);
 }

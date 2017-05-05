@@ -1,5 +1,5 @@
 .footer {
-  margin: 0.5rem;
+  margin: 2rem 0 0 1rem;
   width: var(--width);
   white-space: pre-wrap;
   display: flex;

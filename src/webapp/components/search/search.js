@@ -73,7 +73,7 @@ function searchInput(searchText, suggestions) {
   return h('input', {
     type: 'text',
     value: searchText,
-    placeholder: 'Search for files in the project...',
+    placeholder: 'search for files in this project...',
     className: 'search__input',
     oninput: event => runSearch(event.target.value),
     onkeydown: handleSearchInputKeydown

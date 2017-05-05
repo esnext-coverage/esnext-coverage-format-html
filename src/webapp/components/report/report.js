@@ -1,7 +1,7 @@
 import h from 'virtual-dom/h';
 import findSubtree from '../../services/find-subtree';
 import header from '../header/header';
-import stats from '../stats/stats';
+import commandPalette from '../command-palette/command-palette';
 import footer from '../footer/footer';
 import filebox from '../filebox/filebox';
 
@@ -11,9 +11,9 @@ export default function report(state) {
   return h('div', {
     className: 'report'
   }, [
-    header(state),
-    stats(currentSubtree),
-    filebox(currentSubtree, state),
+    header(state, currentSubtree),
+    commandPalette(state),
+    filebox(state, currentSubtree),
     footer(state)
   ]);
 }

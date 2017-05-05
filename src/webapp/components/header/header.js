@@ -1,11 +1,10 @@
 import h from 'virtual-dom/h';
-import breadcrumbs from '../breadcrumbs/breadcrumbs';
-import search from '../search/search';
+import stats from '../stats/stats';
 
 function headerTitle() {
   return h('div', {
     className: 'header-title'
-  }, ['Code coverage report for']);
+  }, 'My awesome project');
 }
 
 export default function header(state) {
@@ -13,14 +12,7 @@ export default function header(state) {
     className: 'header'
   }, [
     h('div', {className: 'header-logo'}, []),
-    h('div', {className: 'header-contents'}, [
-      h('div', {className: 'header-title-container'}, [
-        headerTitle(),
-        breadcrumbs(state)
-      ]),
-      h('div', {className: 'header-search-container'}, [
-        search(state)
-      ])
-    ])
+    headerTitle(),
+    h('div', {className: 'header-stats'}, stats(state))
   ]);
 }

@@ -27,10 +27,10 @@ function lineNumberGutter(lines) {
 
 function passCountGutter(lines) {
   return h('div', {className: 'gutter-pass-count'}, [
-    lines.map(line => {
+    ...lines.map(line => {
       const className = generateLineCountClassName(line);
-      const textContent = line.covered ? line.count : '';
-      return h('pre', {className}, [textContent]);
+      const textContent = line.covered && line.count > 0 ? line.count : '';
+      return h('pre', {className}, textContent);
     })
   ]);
 }

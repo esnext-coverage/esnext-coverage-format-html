@@ -8,18 +8,21 @@
   bottom: 0;
   right: 0;
   width: 40vw;
+  border-radius: 0.4rem 0.4rem 0.4rem 0;
+  border: solid 1px var(--separatorColor);
+  box-shadow: 0 0 20px #e8edf0;
+  z-index: var(--filePanelLayer);
 }
 
 .file-panel-header {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
   align-content: center;
   flex: 0 0 2rem;
   color: var(--textSubColor);
   text-decoration: none;
-  padding: 0 0.5rem;
-  line-height: 1.4rem;
+  padding: 0 1rem;
   font-size: 0.8rem;
 }
 
@@ -27,9 +30,9 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 0 0.5rem;
+  padding: 0.5rem 1rem;
   overflow-y: auto;
-  border-left: solid 1px var(--separatorColor);
+  border-radius: 0 0.4rem 0.4rem 0;
   background: #fff;
 }
 
@@ -47,7 +50,7 @@
 
 .stack-item--inspected {
   @extend .stack-item;
-  background-color: #bbe4cc;
+  background-color: var(--successSubColor);
 }
 
 .stack-item__tags {

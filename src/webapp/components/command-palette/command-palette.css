@@ -1,0 +1,19 @@
+@import "../search/search";
+@import "../breadcrumbs/breadcrumbs";
+
+.command-palette {
+  display: flex;
+  align-items: stretch;
+  margin-top: 1rem;
+  width: var(--width);
+  height: 2.6rem;
+  border: solid 1px var(--separatorColor);
+  background-color: var(--whiteTransparent);
+  border-radius: 0.4rem;
+  transition: background-color 0.25s;
+  box-shadow: 0 0 20px #e8edf0;
+}
+
+.command-palette:hover {
+  background-color: var(--white);
+}

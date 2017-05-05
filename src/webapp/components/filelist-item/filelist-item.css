@@ -3,25 +3,33 @@
   flex-direction: row;
   align-items: center;
   align-content: center;
-  flex: 0 1 2.4rem;
+  flex: 0 1 3rem;
   border-top: solid 1px var(--separatorColor);
   color: var(--textColor);
   text-decoration: none;
-  background: #fafafa;
+  background-color: var(--white);
+  transition: background-color var(--transitionDuration);
 }
 
 .filelist-item:first-child {
   border-top: none;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+}
+
+.filelist-item:last-child {
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
 }
 
 .filelist-item:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #f3f5f9;
 }
 
 %filelist-item__cell {
   font-size: 0.9rem;
   padding: 0 0.5rem;
-  height: 2.4rem;
+  height: 3rem;
   display: flex;
   align-items: center;
 }
@@ -29,17 +37,24 @@
 .filelist-item__name {
   @extend %filelist-item__cell;
   flex: 1;
+  padding-left: 1rem;
 }
 
 .filelist-item__metric {
   @extend %filelist-item__cell;
   display: flex;
-  flex: 0 0 5.5rem;
+  flex: 0 0 6rem;
   overflow: hidden;
   white-space: nowrap;
   font-size: 0.8rem;
   text-align: left;
   border-left: solid 1px var(--separatorColor);
+}
+
+@media (min-width: 926px) {
+  .filelist-item__metric {
+    flex: 0 0 8rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -60,11 +75,11 @@
 
 .filelist-item__metric--passed::before {
   content: '';
-  margin-right: 0.3rem;
-  flex: 0 0 1rem;
-  height: 1rem;
-  background-color: rgba(39, 174, 96, 0.5);
-  border-radius: 50%;
+  margin-right: 0.5rem;
+  flex: 0 0 0.875rem;
+  height: 0.875rem;
+  background-color: var(--successColor);
+  border-radius: 100%;
 }
 
 .filelist-item__metric--failed {
@@ -73,11 +88,11 @@
 
 .filelist-item__metric--failed::before {
   content: '';
-  margin-right: 0.3rem;
-  flex: 0 0 1rem;
-  height: 1rem;
-  background-color: rgba(231, 76, 60, 0.5);
-  border-radius: 50%;
+  margin-right: 0.5rem;
+  flex: 0 0 0.875rem;
+  height: 0.875rem;
+  background-color: var(--failureColor);
+  border-radius: 100%;
 }
 
 .filelist-item__metric__percentage {

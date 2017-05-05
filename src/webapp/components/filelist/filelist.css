@@ -4,13 +4,15 @@
 .filelist-container {
   display: flex;
   flex-direction: column;
-  width: var(--width);
   align-items: stretch;
+  margin-top: 1rem;
 }
 
 .filelist {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  border-radius: 0.4rem;
   border: solid 1px var(--separatorColor);
+  box-shadow: 0 0 20px #e8edf0;
 }
